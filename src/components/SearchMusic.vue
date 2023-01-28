@@ -53,7 +53,7 @@
         <el-table-column prop="duration" label="时长" align="center"/>
         <el-table-column label="操作" align="center">
           <template #default="scope">
-            <el-button type="primary" @click="downloadRequest(scope.row.rid)">下载</el-button>
+            <el-button type="primary" @click="downloadRequest(scope.row)">下载</el-button>
           </template>
         </el-table-column>
       </el-table>

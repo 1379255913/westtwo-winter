@@ -107,6 +107,8 @@ const Router = useRouter()
 //退出登录
 const logout = () => {
   Router.push('/login')
+  userStore.token = ''
+  userStore.username = ''
 }
 
 const activeIndex = ref('0')

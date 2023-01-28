@@ -285,7 +285,6 @@ function showPassword() {
 function testAccount(username) {
   loginForm.value.username = username
   loginForm.value.password = '123456'
-  Router.push('/search')
   handleLogin()
 }
 

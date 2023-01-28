@@ -72,10 +72,10 @@
         <el-table-column prop="duration" label="时长" align="center"/>
         <el-table-column label="操作" align="center">
           <template #default="scope">
-            <el-button type="primary" @click="downloadRequest(scope.row.rid)">重下</el-button>
-            <el-button type="danger" @click="deleteHistoryRequest(0)">删除</el-button>
+            <el-button type="primary" @click="downloadRequest(scope.row)">重下</el-button>
+            <el-button type="danger" @click="deleteHistoryRequest(0,scope.row.id)">删除</el-button>
             <el-button v-if="scope.row.fav===0" @click="favRequest(scope)">未收藏</el-button>
-            <el-button v-else type="warning" @click="scope.row.fav=0">已收藏</el-button>
+            <el-button v-else type="warning" @click="favRequest(scope)">已收藏</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -129,11 +129,11 @@ const changeIndex = (index) => {
   }
 }
 
-const downloadRequest = (rid) => {
+const downloadRequest = (row) => {
   const a = document.createElement('a');
   document.body.appendChild(a)
   a.style.display = 'none'
-  const url = `http://localhost:8000/search/download/${rid}`
+  const url = `http://localhost:8000/search/download/${row.rid}`
   a.href = url;
   a.download = 'demo.txt';
   a.click();

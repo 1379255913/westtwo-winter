@@ -41,8 +41,8 @@ api.interceptors.response.use(
      * 假设返回数据格式为：{ code: 200, message: '', data: '' }
      * 规则是当 code 为 200 时表示请求成功，否则会展示错误的message
      */
-
-    if (response.data.code === 200) {
+    console.log(response.data.type)
+    if (response.data.code === 200 || response.data.type === 'audio/mpeg') {
       // 请求成功并且没有报错
       return Promise.resolve(response)
     } else {

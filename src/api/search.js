@@ -7,7 +7,9 @@ export function getSearchList(data) {
   })
 }
 
-export function downloadMusic(data) {
-  return api.get('search/download')
+export function downloadMusic(rid) {
+  return api.get(`search/download/${rid}`, {
+    responseType: "blob"
+  })
 }
 

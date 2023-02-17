@@ -132,15 +132,19 @@ const changeIndex = (index) => {
 }
 
 const downloadRequest = (row) => {
-  const a = document.createElement('a');
-  document.body.appendChild(a)
-  a.style.display = 'none'
-  const url = `http://localhost:8000/search/download/${row.rid}`
-  a.href = url;
-  a.download = 'demo.txt';
-  a.click();
-  document.body.removeChild(a)
-  window.URL.revokeObjectURL(url);
+  downloadMusic(row.rid).then(res => {
+    const data = res.data
+    const blob = new Blob([data], { type: 'audio/mpeg' }); //type这里表示默认的下载文件类型为xlsx类型
+    const downloadElement = document.createElement("a");
+    const href = window.URL.createObjectURL(blob); //创建下载的链接
+    downloadElement.href = href;
+    downloadElement.download = `${row.name}.mp3`; //下载后文件名
+    document.body.appendChild(downloadElement);
+    downloadElement.click(); //点击下载
+    document.body.removeChild(downloadElement); //下载完成移除元素
+    window.URL.revokeObjectURL(href);
+  })
+
 }
 
 // const bulkDownloadRequest = () => {
